@@ -6,14 +6,20 @@ import PropTypes from 'prop-types';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function tick() {
-  root.render(
-    <div>
-      <h1>this part doesnt change</h1>
-      <strong>{new Date().toLocaleTimeString()}</strong>
-    </div>
-  )
-
+let state = {
+    count: 0,
+    username: 'anoniempje',
 }
-setInterval(tick, 1000);
-tick();
+
+function setState(newState) {
+    state = Object.assign({}, state, newState)
+    render()
+}
+
+function render() {
+    root.render(
+        <div></div>
+    )
+}
+
+render()
