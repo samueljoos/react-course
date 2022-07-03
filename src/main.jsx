@@ -1,34 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import PropTypes from 'prop-types';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let state = {
-    count: 0,
-    username: 'anoniempje',
+function Message(props) {
+    const [name, setName] = useState();
+
+    return (
+        <div>
+        <form>
+            <label htmlFor="name">Name</label> {/* in react gebruik je htmlFor in plaats van for */}
+            <input
+              id="name"
+              onChange={(e) => {
+                  setName(e.target.value);
+              }}
+            />
+            <br />
+            { name ? <>Hello <strong>{name}</strong></> :  'Please type your name '} <br />
+        </form>
+        </div>
+    );
 }
 
-function setState(newState) {
-    state = Object.assign({}, state, newState)
-    render()
-}
-
-function render() {
-  root.render(
-    <div>
-      <h1>likes: {state.count}</h1>
-      <div>
-        <button onClick={() =>setState({count: state.count + 1})}>+1</button>
-      </div>
-      <strong>Hi {state.username} at {new Date().toLocaleTimeString()}</strong>
-      <div>
-        <input type="text" placeholder='username' onBlur={(event) =>setState({username: event.target.value})} />
-      </div>
-    </div>
-  )
-}
-
-render()
+ReactDOM.createRoot(document.getElementById('root')).render(<Message />);
