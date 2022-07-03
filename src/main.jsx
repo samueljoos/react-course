@@ -4,11 +4,10 @@ import App from './App'
 import './index.css'
 import PropTypes from 'prop-types';
 
-function Message({username, text, commentCount}) {
-    return <div>
-        {username}: {text} has {commentCount ? <strong>{ commentCount }</strong>  : 'no'} comments
-    </div>
-}
+const test = true ? "true" : "false" // ✅
+const element = <div>{ true ? "true" : "false" }</div>; // ✅
 
-const element = <Message username="ioioio" text="Hello world" commentCount={10}/>
+// const test = if(true) { "true" }  else { "false" } // ❌
+// <div>{ if(true) { "true" }  else { "false" } }</div> // ❌
+
 ReactDOM.createRoot(root).render(element)
