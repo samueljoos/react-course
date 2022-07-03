@@ -5,9 +5,8 @@ import './index.css'
 import PropTypes from 'prop-types';
 
 function Message({username, text, commentCount}) {
-    const countLabel = commentCount.length ? commentCount : 'no'
-    return <div> 
-        {username}: {text} has {countLabel} comments
+    return <div>    
+        {username}: {text} has {commentCount.length ? commentCount : 'no'} comments
     </div>
 }
 
