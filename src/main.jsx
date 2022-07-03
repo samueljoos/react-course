@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+// React.createElement(type, props, children)
+const element = React.createElement('div',{id:'root-div'}, "hello world")
+ReactDOM.createRoot(root).render(element)
