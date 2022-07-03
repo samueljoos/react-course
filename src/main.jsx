@@ -1,28 +1,36 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './index.css'
-import PropTypes from 'prop-types';
 
+const listData = [
+  {id:'item-1', title: 'hello1', description: 'world1'},
+  {id:'item-2', title: 'hello2', description: 'world2'},
+  {id:'item-3', title: 'hello3', description: 'world3'},
+  {id:'item-4', title: 'hello4', description: 'world4'},
+]
 
-function Message(props) {
-    const [name, setName] = useState();
+function App() {
+  const [list, setList] = useState(listData);
 
-    return (
-        <div>
-        <form>
-            <label htmlFor="name">Name</label> {/* in react gebruik je htmlFor in plaats van for */}
-            <input
-              id="name"
-              onChange={(e) => {
-                  setName(e.target.value);
-              }}
-            />
-            <br />
-            { name ? <>Hello <strong>{name}</strong></> :  'Please type your name '} <br />
-        </form>
-        </div>
-    );
+  function removeItem(item) {
+    setList(l => l.filter(i => i.id !== item.id));
+  }
+
+  function updateItem(item) {
+    setList(l => l.map(i => i.id === item.id ? item : i));
+  }
+
+  return (
+    <>
+      { list.map((item) => (
+        <article>
+          <h2>{item.title}</h2>
+          <textarea onChange={(e)=> updateItem({...item, description:e.target.value})}>{item.description}</textarea>
+          <button onClick={(e)=> removeItem(item)}>remove</button>
+        </article>
+      ))}
+    </>
+  )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<Message />);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
