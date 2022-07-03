@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import clsx from 'clsx';
 import './App.css'
 
-function Button(props) {
-    return <button className='button' {...props}>Submit</button>
+function Button({className, ...rest}) {
+    return <button className={ clsx('button', className) } {...rest}>Submit</button>
 }
 
 function App() {
