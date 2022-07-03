@@ -1,38 +1,44 @@
-import { useEffect, useState } from 'react';
+import gsap from 'gsap';
+import { useEffect, useRef, useState } from 'react';
 import './App.css'
 
-function useLocalStorage(key, defaultValue='') {
-    const [state, setState] = useState(() => window.localStorage.getItem(key) || defaultValue);
-
-    useEffect(() => {
-        window.localStorage.setItem(key, state);
-    }, [state])
-
-    return [state, setState]
-}
-
-function Greeting() {
-    const [name, setName] = useLocalStorage('name');
-    return (
-        <div>
-        <label htmlFor='name'>Name</label>
-        <input value={name} id="name" type="text" onChange={() => {
-            setName(event.target.value);
-        }} />
-        <div>Hi <strong>{name}</strong>!</div>
-        </div>
-    )
-}
-
 function App() {
-    const [count, setCount] = useState(0);
-
+    const [show, setShow] = useState(false);
+    
+    const ref = useRef();
+    
+    useEffect(() => {     
+        // met ref.currrent haal je het div html element op.
+        gsap.to(ref.current, {
+            duration: 1,
+            opacity: show ? 1: 0,
+            rotate: show ? 180: 0,
+        })// met gsap kunnen we er een animatie aan vast hangen
+    }, [show]);
     return (
-        <div>
-            <button onClick={() => setCount(c => c + 1)}>{count}</button>
-            <Greeting/>
+        <>
+        <label>
+            <input
+            type="checkbox"
+            checked={show}
+            onChange={e => setShow(e.target.checked)}
+            />
+            {' '}show child
+        </label>
+        <div
+            ref={ref}
+            style={{
+                padding: 10,
+                margin: 10,
+                height: 30,
+                width: 30,
+                border: 'solid',
+            }}
+        >
+        
         </div>
+        </>
     )
 }
-
 export default App
+    
