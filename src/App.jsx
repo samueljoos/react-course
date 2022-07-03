@@ -5,7 +5,8 @@ function App() {
 
   return (
     <div className="App">
-          <button className='button'>Submit</button> 
+      {/* <button className='button' style='background-color: red'>Submit</button>  ❌ */}
+      <button className='button' style={{backgroundColor: 'red'}}>Submit</button> {/* ✅ */}
     </div>
   )
 }
