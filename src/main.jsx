@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 
-// React.createElement(type, props, children)
-const element = React.createElement('div',{id:'root-div'}, "hello world")
-ReactDOM.createRoot(root).render(element)
+const firstElement = React.createElement('div', null, 'first element')
+const secondElement = React.createElement('div', null, 'second element')
+
+//ReactDOM.createRoot(root).render(firstElement, secondElement) //❌ dit gaat niet werken
