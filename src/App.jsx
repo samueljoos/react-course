@@ -1,21 +1,16 @@
 import { useState } from 'react'
 import './App.css'
 
-function App() {
+function Button(props) {
+    return <button className='button' {...props}>Submit</button>
+}
 
-  return (
-    <div className="App">
-      <button className='button button—small' style={{
-          backgroundColor: 'red' 
-      }}>Submit</button>
-      <button className='button button—medium' style={{
-          backgroundColor: 'blue' 
-      }}>Submit</button>
-      <button className='button button—large' style={{
-          backgroundColor: 'green'
-      }}>Submit</button>
-    </div>
-  )
+function App() {
+    return <>
+        <Button className='button—small'  style={{ backgroundColor: 'red' }} />
+        <Button className='button—medium'  style={{ backgroundColor: 'blue' }} />
+        <Button className='button—large'  style={{ backgroundColor: 'green' }} />
+    </>
 }
 
 export default App
