@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css'
 
 function App() {
-    const [name, setName] = useState(window.localStorage.getItem('name') || '');
+    const [name, setName] = useState(() => window.localStorage.getItem('name') || '');
 
     useEffect(() => {    // deze functie word aangeroepen bij iedere render van het component
         window.localStorage.setItem('name', name);
