@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 function Message({username, text, commentCount}) {
     return <div>
-        {username}: {text} has <strong>{commentCount.length ? commentCount : 'no'}</strong> comments
+        {username}: {text} has {commentCount ? <strong>{ commentCount }</strong>  : 'no'} comments
     </div>
 }
 
