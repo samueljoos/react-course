@@ -1,18 +1,22 @@
-import clsx from 'clsx';
+import { useEffect, useState } from 'react';
 import './App.css'
 
-function Button({className, italic=false, ...rest}) {
-    return <button className={ clsx('button', className, italic && 'button-italic') } {...rest}>
-        Submit
-    </button>
-}
-
 function App() {
-    return <>
-        <Button className='button—small' italic={true}  style={{ backgroundColor: 'red' }} />
-        <Button className='button—medium'  style={{ backgroundColor: 'blue' }} />
-        <Button className='button—large'  style={{ backgroundColor: 'green' }} />
-    </>
+    const [name, setName] = useState(window.localStorage.getItem('name') || '');
+
+    useEffect(() => {    // deze functie word aangeroepen bij iedere render van het component
+        window.localStorage.setItem('name', name);
+    })
+
+    return (
+    <div>
+        <label htmlFor='name'>Name</label>
+        <input value={name} id="name" type="text" onChange={() => {
+            setName(event.target.value);
+        }} />
+        <div>Hi <strong>{name}</strong>!</div>
+    </div>
+    )
 }
 
 export default App
