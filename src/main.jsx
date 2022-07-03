@@ -4,10 +4,16 @@ import App from './App'
 import './index.css'
 import PropTypes from 'prop-types';
 
-const test = true ? "true" : "false" // ✅
-const element = <div>{ true ? "true" : "false" }</div>; // ✅
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// const test = if(true) { "true" }  else { "false" } // ❌
-// <div>{ if(true) { "true" }  else { "false" } }</div> // ❌
+function tick() {
+  root.render(
+    <div>
+      <h1>this part doesnt change</h1>
+      <strong>{new Date().toLocaleTimeString()}</strong>
+    </div>
+  )
 
-ReactDOM.createRoot(root).render(element)
+}
+setInterval(tick, 1000);
+tick();
