@@ -17,9 +17,18 @@ function setState(newState) {
 }
 
 function render() {
-    root.render(
-        <div></div>
-    )
+  root.render(
+    <div>
+      <h1>likes: {state.count}</h1>
+      <div>
+        <button onClick={() =>setState({count: state.count + 1})}>+1</button>
+      </div>
+      <strong>Hi {state.username} at {new Date().toLocaleTimeString()}</strong>
+      <div>
+        <input type="text" placeholder='username' onBlur={(event) =>setState({username: event.target.value})} />
+      </div>
+    </div>
+  )
 }
 
 render()
