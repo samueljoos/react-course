@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       { list.map((item) => (
-        <article>
+        <article key={item.id}>
           <h2>{item.title}</h2>
           <textarea onChange={(e)=> updateItem({...item, description:e.target.value})}>{item.description}</textarea>
           <button onClick={(e)=> removeItem(item)}>remove</button>
