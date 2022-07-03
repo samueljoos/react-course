@@ -5,8 +5,8 @@ import './index.css'
 import PropTypes from 'prop-types';
 
 function Message({username, text, commentCount}) {
-    return <div>    
-        {username}: {text} has {commentCount.length ? commentCount : 'no'} comments
+    return <div>
+        {username}: {text} has <strong>{commentCount.length ? commentCount : 'no'}</strong> comments
     </div>
 }
 
