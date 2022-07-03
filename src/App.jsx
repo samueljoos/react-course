@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 
-function Greeting() {
-    const [name, setName] = useState(() => window.localStorage.getItem('name') || '');
+function useLocalStorage(key, defaultValue='') {
+    const [state, setState] = useState(() => window.localStorage.getItem(key) || defaultValue);
 
     useEffect(() => {
-        console.log('useEffect update'); // Dit wijzigt nu enkel indien name veranderd
-        window.localStorage.setItem('name', name);
-    }, [name])
+        window.localStorage.setItem(key, state);
+    }, [state])
 
+    return [state, setState]
+}
+
+function Greeting() {
+    const [name, setName] = useLocalStorage('name');
     return (
         <div>
-            <label htmlFor='name'>Name</label>
-            <input value={name} id="name" type="text" onChange={() => {
-                setName(event.target.value);
-            }} />
-            <div>Hi <strong>{name}</strong>!</div>
+        <label htmlFor='name'>Name</label>
+        <input value={name} id="name" type="text" onChange={() => {
+            setName(event.target.value);
+        }} />
+        <div>Hi <strong>{name}</strong>!</div>
         </div>
     )
 }
